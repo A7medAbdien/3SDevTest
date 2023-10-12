@@ -37,7 +37,7 @@ namespace _3SDevTest.Pages.Users
             }
 
             _context.Users.Add(User);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
 
             return RedirectToPage("/Addresses/Create", new { userId = User.Id });
         }

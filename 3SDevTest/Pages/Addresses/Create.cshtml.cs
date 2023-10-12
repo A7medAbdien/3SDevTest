@@ -13,7 +13,6 @@ namespace _3SDevTest.Pages.Addresses
     public class CreateModel : PageModel
     {
         private readonly _3SDevTest.Data.ApplicationDbContext _context;
-        private int _userId;
         public CreateModel(_3SDevTest.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -22,7 +21,6 @@ namespace _3SDevTest.Pages.Addresses
         public IActionResult OnGet(int userId)
         {
             ViewData["UserId"] = userId;
-            _userId = userId;
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
             return Page();
         }
@@ -31,19 +29,14 @@ namespace _3SDevTest.Pages.Addresses
         public Address Address { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
-            if (Address != null)
-            {
-                Address.UserId = _userId;
-            }
-            if (!ModelState.IsValid || _context.Addresses == null || Address == null)
+            if (!ModelState.IsValid || _context.Addresses == null || Address == null )
             {
                 return Page();
             }
-
             _context.Addresses.Add(Address);
-            await _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

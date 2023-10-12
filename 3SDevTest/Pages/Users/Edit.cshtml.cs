@@ -66,7 +66,7 @@ namespace _3SDevTest.Pages.Users
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Addresses/Create", new { userId = User.Id });
         }
 
         private bool UserExists(int id)
