@@ -1,0 +1,66 @@
+﻿@page
+@model _3SDevTest.Pages.Addresses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].User)
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Governate[0]) *@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].BuildingNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].FlatNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Address) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Governate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlatNumber)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
