@@ -10,7 +10,7 @@ namespace _3SDevTest.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        public DbSet<User> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,13 +23,14 @@ namespace _3SDevTest.Data
                     LastName = "LastName1",
                     Email = "ex@gmail.com",
                     MobileNumber = "+021006158123",
-                    BirthDate = new DateOnly(2023, 10, 12),
-                    AddressList = new Address
-                    {
-                        BuildingNumber = 1,
-                        FlatNumber = 1,
-                        Street = "1111"
-                    }
+                    BirthDate = new DateTime(2020, 10, 1),
+                    //AddressList = new Address
+                    //{
+                    //    Id=1,
+                    //    BuildingNumber = 1,
+                    //    FlatNumber = 1,
+                    //    Street = "1111"
+                    //}
                 }, 
                 new User
                 {
@@ -39,13 +40,14 @@ namespace _3SDevTest.Data
                     LastName = "LastName2",
                     Email = "ex@gmail.com",
                     MobileNumber = "+022006258223",
-                    BirthDate = new DateOnly(2023, 20, 22),
-                    AddressList = new Address
-                    {
-                        BuildingNumber = 2,
-                        FlatNumber = 2,
-                        Street = "2222"
-                    }
+                    BirthDate = new DateTime(2020, 10, 2),
+                    //AddressList = new Address
+                    //{
+                    //    Id = 2,
+                    //    BuildingNumber = 2,
+                    //    FlatNumber = 2,
+                    //    Street = "2222"
+                    //}
                 },
                 new User
                 {
@@ -55,13 +57,14 @@ namespace _3SDevTest.Data
                     LastName = "LastName3",
                     Email = "ex@gmail.com",
                     MobileNumber = "+023006358323",
-                    BirthDate = new DateOnly(2023, 30, 32),
-                    AddressList = new Address
-                    {
-                        BuildingNumber = 3,
-                        FlatNumber = 3,
-                        Street = "3333"
-                    }
+                    BirthDate = new DateTime(2020, 10, 3),
+                    //AddressList = new Address
+                    //{
+                    //    Id = 3,
+                    //    BuildingNumber = 3,
+                    //    FlatNumber = 3,
+                    //    Street = "3333"
+                    //}
                 }
                 );
         }
