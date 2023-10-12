@@ -12,8 +12,8 @@ using _3SDevTest.Data;
 namespace _3SDevTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231012160345_seedTableAddressAndGovernateAndCiry")]
-    partial class seedTableAddressAndGovernateAndCiry
+    [Migration("20231012161737_restartAll")]
+    partial class restartAll
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,8 +42,9 @@ namespace _3SDevTest.Migrations
                     b.Property<int>("FlatNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("GovernateId")
-                        .HasColumnType("int");
+                    b.Property<string>("Governate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -56,8 +57,6 @@ namespace _3SDevTest.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("GovernateId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
@@ -69,7 +68,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 1,
                             CityId = 1,
                             FlatNumber = 1,
-                            GovernateId = 1,
+                            Governate = "Governate 1",
                             Street = "1",
                             UserId = 1
                         },
@@ -79,7 +78,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 2,
                             CityId = 2,
                             FlatNumber = 2,
-                            GovernateId = 2,
+                            Governate = "Governate 1",
                             Street = "2",
                             UserId = 2
                         },
@@ -89,7 +88,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 3,
                             CityId = 3,
                             FlatNumber = 3,
-                            GovernateId = 3,
+                            Governate = "Governate 2",
                             Street = "3",
                             UserId = 3
                         });
@@ -245,12 +244,6 @@ namespace _3SDevTest.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_3SDevTest.Models.Governate", "Governate")
-                        .WithMany()
-                        .HasForeignKey("GovernateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("_3SDevTest.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -258,8 +251,6 @@ namespace _3SDevTest.Migrations
                         .IsRequired();
 
                     b.Navigation("City");
-
-                    b.Navigation("Governate");
 
                     b.Navigation("User");
                 });

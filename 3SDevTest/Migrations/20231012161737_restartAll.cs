@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,38 +8,11 @@
 namespace _3SDevTest.Migrations
 {
     /// <inheritdoc />
-    public partial class seedTableAddressAndGovernateAndCiry : Migration
+    public partial class restartAll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "MiddleName",
-                table: "Users",
-                type: "nvarchar(40)",
-                maxLength: 40,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "LastName",
-                table: "Users",
-                type: "nvarchar(20)",
-                maxLength: 20,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "FirstName",
-                table: "Users",
-                type: "nvarchar(20)",
-                maxLength: 20,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
             migrationBuilder.CreateTable(
                 name: "Governates",
                 columns: table => new
@@ -50,6 +24,24 @@ namespace _3SDevTest.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Governates", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +71,7 @@ namespace _3SDevTest.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    GovernateId = table.Column<int>(type: "int", nullable: false),
+                    Governate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BuildingNumber = table.Column<int>(type: "int", nullable: false),
@@ -92,12 +84,6 @@ namespace _3SDevTest.Migrations
                         name: "FK_Addresses_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Addresses_Governates_GovernateId",
-                        column: x => x.GovernateId,
-                        principalTable: "Governates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -118,6 +104,16 @@ namespace _3SDevTest.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "BirthDate", "Email", "FirstName", "LastName", "MiddleName", "MobileNumber" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ex@gmail.com", "FirstName1", "LastName1", "MiddleName1", "+021006158123" },
+                    { 2, new DateTime(2020, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "ex@gmail.com", "FirstName2", "LastName2", "MiddleName2", "+022006258223" },
+                    { 3, new DateTime(2020, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "ex@gmail.com", "FirstName3", "LastName3", "MiddleName3", "+023006358323" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Cities",
                 columns: new[] { "Id", "GovernateId", "Name" },
                 values: new object[,]
@@ -129,23 +125,18 @@ namespace _3SDevTest.Migrations
 
             migrationBuilder.InsertData(
                 table: "Addresses",
-                columns: new[] { "Id", "BuildingNumber", "CityId", "FlatNumber", "GovernateId", "Street", "UserId" },
+                columns: new[] { "Id", "BuildingNumber", "CityId", "FlatNumber", "Governate", "Street", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, 1, "1", 1 },
-                    { 2, 2, 2, 2, 2, "2", 2 },
-                    { 3, 3, 3, 3, 3, "3", 3 }
+                    { 1, 1, 1, 1, "Governate 1", "1", 1 },
+                    { 2, 2, 2, 2, "Governate 1", "2", 2 },
+                    { 3, 3, 3, 3, "Governate 2", "3", 3 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
                 table: "Addresses",
                 column: "CityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Addresses_GovernateId",
-                table: "Addresses",
-                column: "GovernateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",
@@ -168,34 +159,10 @@ namespace _3SDevTest.Migrations
                 name: "Cities");
 
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Governates");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "MiddleName",
-                table: "Users",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(40)",
-                oldMaxLength: 40);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "LastName",
-                table: "Users",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(20)",
-                oldMaxLength: 20);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "FirstName",
-                table: "Users",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(20)",
-                oldMaxLength: 20);
         }
     }
 }
