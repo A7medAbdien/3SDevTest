@@ -5,15 +5,62 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Address</h4>
+<div class="container">
+    <div class="row py-4">
+        <div class="col-6">
+            <h1>Create Addresses</h1>
+        </div>
+        <div class="col-6 text-end">
+                <a class="btn btn-dark" asp-page="/Users/Index">Back to List</a>
+        </div>
+    </div>
+</div>
 <hr />
+
 <div class="row">
+    @if (User != null)
+    {
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="User.FirstName" class="control-label"></label>
+                <input disabled asp-for="User.FirstName" class="form-control" />
+                <span asp-validation-for="User.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.MiddleName" class="control-label"></label>
+                <input disabled asp-for="User.MiddleName" class="form-control" />
+                <span asp-validation-for="User.MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.LastName" class="control-label"></label>
+                <input disabled asp-for="User.LastName" class="form-control" />
+                <span asp-validation-for="User.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.BirthDate" class="control-label"></label>
+                <input disabled asp-for="User.BirthDate" type="date" class="form-control" />
+                <span asp-validation-for="User.BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.MobileNumber" class="control-label"></label>
+                <input disabled asp-for="User.MobileNumber" class="form-control" />
+                <span asp-validation-for="User.MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Email" class="control-label"></label>
+                <input disabled asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+        </div>
+    }
+    <div class="col-md-2"></div>
     <div class="col-md-4">
+
+        <h4>Address</h4>
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <label class="control-label">User Email @ViewBag.UserId</label>
             <input hidden asp-for="Address.UserId" value="@ViewBag.UserId" class="form-control"></input>
 
             <div class="form-group">
@@ -25,7 +72,7 @@
 
             <div class="form-group">
                 <label asp-for="Address.CityId" class="control-label"></label>
-                <select id="city" asp-for="Address.CityId" class="form-control" >
+                <select id="city" asp-for="Address.CityId" class="form-control">
                     @* <option value="">Please select</option> *@
                 </select>
             </div>
@@ -44,15 +91,69 @@
                 <input asp-for="Address.FlatNumber" class="form-control" />
                 <span asp-validation-for="Address.FlatNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
+    @if (Model.AddressesList.Count > 0)
+    {
+        <div class="col-md-12">
+            <h4>
+                Exciting Addresses (@Model.AddressesList.Count)
+            </h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => Model.GetGovernanceById(Model.AddressesList[0].GovernateId).Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => Model.AddressesList[0].City)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => Model.AddressesList[0].Street)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => Model.AddressesList[0].BuildingNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => Model.AddressesList[0].FlatNumber)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.AddressesList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.GetGovernanceById(item.GovernateId).Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Street)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BuildingNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FlatNumber)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-<div>
-    <a asp-page="Index">Back to List</a>
+        </div>
+    }
 </div>
 
 @section Scripts {

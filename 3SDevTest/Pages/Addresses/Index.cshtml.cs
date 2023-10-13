@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using _3SDevTest.Data;
 using _3SDevTest.Models;
+using _3SDevTest.Utilities;
 
 namespace _3SDevTest.Pages.Addresses
 {
@@ -34,20 +35,12 @@ namespace _3SDevTest.Pages.Addresses
 
         public Governate? GetGovernanceById(int id)
         {
-            if (_context.Governates != null)
-            {
-                return _context.Governates.FirstOrDefault(u => u.Id == id);
-            }
-            return null;
+            return GetGovernate.GetGovernateById(id, _context.Governates);
         }
 
         public string GetFullNameByUser(User user)
         {
-            //if(user.MiddleName != null)
-            //{
-            //    return user.FirstName + " " + user.MiddleName + " " + user.LastName;
-            //}
-            return user.FirstName + " " + user.LastName;
+            return UserFullName.GetFullNameByUser(user);
         }
     }
 }
