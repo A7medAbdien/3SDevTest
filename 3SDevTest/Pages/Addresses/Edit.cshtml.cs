@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _3SDevTest.Data;
 using _3SDevTest.Models;
+using _3SDevTest.Utilities;
 
 namespace _3SDevTest.Pages.Addresses
 {
@@ -30,15 +31,21 @@ namespace _3SDevTest.Pages.Addresses
                 return NotFound();
             }
 
-            var address =  await _context.Addresses.FirstOrDefaultAsync(m => m.Id == id);
+            var address = await _context.Addresses.FirstOrDefaultAsync(m => m.Id == id);
             if (address == null)
             {
                 return NotFound();
             }
             Address = address;
-           ViewData["GovernateId"] = new SelectList(_context.Governates, "Id", "Name");
-           ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name")   ;
-           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["Governates"] = new SelectList(_context.Governates, "Id", "Name");
+            ViewData["Cities"] = new SelectList(_context.Cities, "Id", "Name");
+            ViewData["Users"] = _context.Users.Select(u =>
+                new SelectListItem
+                {
+                    Text = UserFullName.GetFullNameByUser(u),
+                    Value = u.Id.ToString()
+                });
+
             return Page();
         }
 
@@ -48,9 +55,9 @@ namespace _3SDevTest.Pages.Addresses
         {
             if (!ModelState.IsValid)
             {
-                ViewData["GovernateId"] = new SelectList(_context.Governates, "Id", "Name");
-                ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
-                ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email");
+                ViewData["Governates"] = new SelectList(_context.Governates, "Id", "Name");
+                ViewData["Cities"] = new SelectList(_context.Cities, "Id", "Name");
+                ViewData["Users"] = new SelectList(_context.Users, "Id", "Email");
                 return Page();
             }
 
@@ -77,7 +84,7 @@ namespace _3SDevTest.Pages.Addresses
 
         private bool AddressExists(int id)
         {
-          return (_context.Addresses?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Addresses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

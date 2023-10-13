@@ -21,32 +21,32 @@ namespace _3SDevTest.Data
                 new User
                 {
                     Id = 1,
-                    FirstName = "FirstName1",
-                    MiddleName = "MiddleName1",
-                    LastName = "LastName1",
+                    FirstName = "AFirstName",
+                    MiddleName = "AMiddleName",
+                    LastName = "ALastName1",
                     Email = "ex@gmail.com",
                     MobileNumber = "+021006158123",
-                    BirthDate = new DateTime(2020, 10, 1)
+                    BirthDate = new DateTime(2000, 10, 1)
                 },
                 new User
                 {
                     Id = 2,
-                    FirstName = "FirstName2",
-                    MiddleName = "MiddleName2",
-                    LastName = "LastName2",
+                    FirstName = "BFirstName",
+                    MiddleName = "BMiddleName",
+                    LastName = "BLastName",
                     Email = "ex@gmail.com",
                     MobileNumber = "+022006258223",
-                    BirthDate = new DateTime(2020, 10, 2)
+                    BirthDate = new DateTime(2000, 10, 2)
                 },
                 new User
                 {
                     Id = 3,
-                    FirstName = "FirstName3",
-                    MiddleName = "MiddleName3",
-                    LastName = "LastName3",
+                    FirstName = "CFirstName",
+                    MiddleName = "CMiddleName",
+                    LastName = "CLastName",
                     Email = "ex@gmail.com",
-                    MobileNumber = "+023006358323",
-                    BirthDate = new DateTime(2020, 10, 3)
+                    MobileNumber = "+021006358323",
+                    BirthDate = new DateTime(2000, 10, 3)
                 }
                 );
 
