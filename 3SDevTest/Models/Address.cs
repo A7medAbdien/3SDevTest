@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,16 +10,19 @@ namespace _3SDevTest.Models
         public int Id { get; set; }
         [Required]
         [ValidateNever]
+        [DisplayName("User")]
         public int UserId { get; set; }
         [ValidateNever]
         [ForeignKey(nameof(UserId))]
         public User User { get; set; }
 
         [Required]
+        [DisplayName("Governante")]
         public int GovernateId { get; set; }
 
         [Required]
         [ValidateNever]
+        [DisplayName("City")]
         public int CityId { get; set; }
         [ValidateNever]
         [ForeignKey(nameof(CityId))]
@@ -27,8 +31,10 @@ namespace _3SDevTest.Models
         [Required]
         public string Street { get; set; }
         [Required]
+        [DisplayName("Building Number")]
         public int BuildingNumber { get; set; }
         [Required]
+        [DisplayName("Flat Number")]
         public int FlatNumber { get; set; }
     }
 
@@ -40,6 +46,7 @@ namespace _3SDevTest.Models
     public class City {
         public int Id { get; set; }
         [ValidateNever]
+        [DisplayName("Goverante")]
         public int GovernateId { get; set; }
         [ValidateNever]
         [ForeignKey(nameof(GovernateId))]
