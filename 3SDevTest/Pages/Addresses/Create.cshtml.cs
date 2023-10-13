@@ -35,7 +35,7 @@ namespace _3SDevTest.Pages.Addresses
         public Address Address { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
 
             if (!ModelState.IsValid || _context.Addresses == null || Address == null )
@@ -43,7 +43,7 @@ namespace _3SDevTest.Pages.Addresses
                 return Page();
             }
             _context.Addresses.Add(Address);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

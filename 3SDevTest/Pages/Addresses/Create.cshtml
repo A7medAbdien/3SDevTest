@@ -18,8 +18,8 @@
 
             <div class="form-group">
                 <label asp-for="Address.GovernateId" class="control-label"></label>
-                <select id="governate" required class="form-control" name="governate" asp-items='ViewBag.Governates'>
-                    @* <option value="">Please select</option> *@
+                <select id="governate" required class="form-control" asp-for="Address.GovernateId" asp-items='ViewBag.Governates'>
+                    <option value="">Please select</option>
                 </select>
             </div>
 
