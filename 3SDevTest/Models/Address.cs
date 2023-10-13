@@ -15,7 +15,7 @@ namespace _3SDevTest.Models
         public User User { get; set; }
 
         [Required]
-        public string Governate { get; set; }
+        public int GovernateId { get; set; }
 
         [Required]
         [ValidateNever]

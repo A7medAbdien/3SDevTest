@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace _3SDevTest.Migrations
 {
     /// <inheritdoc />
-    public partial class restartAll : Migration
+    public partial class seedAll : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

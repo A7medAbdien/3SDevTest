@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _3SDevTest.Data;
 
@@ -11,9 +12,11 @@ using _3SDevTest.Data;
 namespace _3SDevTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231013013735_seedAll")]
+    partial class seedAll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,8 +42,9 @@ namespace _3SDevTest.Migrations
                     b.Property<int>("FlatNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("GovernateId")
-                        .HasColumnType("int");
+                    b.Property<string>("Governate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -64,7 +68,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 1,
                             CityId = 1,
                             FlatNumber = 1,
-                            GovernateId = 1,
+                            Governate = "Governate 1",
                             Street = "1",
                             UserId = 1
                         },
@@ -74,7 +78,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 2,
                             CityId = 2,
                             FlatNumber = 2,
-                            GovernateId = 1,
+                            Governate = "Governate 1",
                             Street = "2",
                             UserId = 2
                         },
@@ -84,7 +88,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 3,
                             CityId = 3,
                             FlatNumber = 3,
-                            GovernateId = 2,
+                            Governate = "Governate 2",
                             Street = "3",
                             UserId = 3
                         });

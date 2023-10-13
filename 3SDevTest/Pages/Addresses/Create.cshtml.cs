@@ -21,7 +21,8 @@ namespace _3SDevTest.Pages.Addresses
         public IActionResult OnGet(int userId)
         {
             ViewData["UserId"] = userId;
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
+            ViewData["Governates"] = new SelectList(_context.Governates, "Name", "Name");
+            ViewData["Cities"] = new SelectList(_context.Cities, "Id", "Name");
             return Page();
         }
 

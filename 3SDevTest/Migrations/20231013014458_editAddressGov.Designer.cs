@@ -12,8 +12,8 @@ using _3SDevTest.Data;
 namespace _3SDevTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231012161737_restartAll")]
-    partial class restartAll
+    [Migration("20231013014458_editAddressGov")]
+    partial class editAddressGov
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,9 +42,8 @@ namespace _3SDevTest.Migrations
                     b.Property<int>("FlatNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("Governate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("GovernateId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -68,7 +67,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 1,
                             CityId = 1,
                             FlatNumber = 1,
-                            Governate = "Governate 1",
+                            GovernateId = 1,
                             Street = "1",
                             UserId = 1
                         },
@@ -78,7 +77,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 2,
                             CityId = 2,
                             FlatNumber = 2,
-                            Governate = "Governate 1",
+                            GovernateId = 1,
                             Street = "2",
                             UserId = 2
                         },
@@ -88,7 +87,7 @@ namespace _3SDevTest.Migrations
                             BuildingNumber = 3,
                             CityId = 3,
                             FlatNumber = 3,
-                            Governate = "Governate 2",
+                            GovernateId = 2,
                             Street = "3",
                             UserId = 3
                         });

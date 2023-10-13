@@ -88,7 +88,7 @@ namespace _3SDevTest.Data
                 new Address{
                     Id = 1,
                     UserId = 1,
-                    Governate= "Governate 1",
+                    GovernateId= 1,
                     CityId = 1,
                     FlatNumber = 1,
                     BuildingNumber = 1,
@@ -97,7 +97,7 @@ namespace _3SDevTest.Data
                 new Address{
                     Id = 2,
                     UserId = 2,
-                    Governate= "Governate 1",
+                    GovernateId= 1,
                     CityId = 2,
                     FlatNumber = 2,
                     BuildingNumber = 2,
@@ -106,7 +106,7 @@ namespace _3SDevTest.Data
                 new Address{
                     Id = 3,
                     UserId = 3,
-                    Governate= "Governate 2",
+                    GovernateId= 2,
                     CityId = 3,
                     FlatNumber = 3,
                     BuildingNumber = 3,
