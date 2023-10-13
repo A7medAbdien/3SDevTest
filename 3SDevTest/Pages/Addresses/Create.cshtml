@@ -8,20 +8,20 @@
 <div class="container">
     <div class="row py-4">
         <div class="col-6">
-            <h1>Create Addresses</h1>
+            <h1>Manage Addresses</h1>
         </div>
         <div class="col-6 text-end">
                 <a class="btn btn-dark" asp-page="/Users/Index">Back to List</a>
         </div>
     </div>
 </div>
+
 <hr />
 
 <div class="row">
     @if (User != null)
     {
-        <div class="col-md-1"></div>
-        <div class="col-md-4">
+        <div class="col-md-6 px-5">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="User.FirstName" class="control-label"></label>
@@ -55,8 +55,7 @@
             </div>
         </div>
     }
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
+    <div class="col-md-6 px-5">
 
         <h4>Address</h4>
         <form method="post">
