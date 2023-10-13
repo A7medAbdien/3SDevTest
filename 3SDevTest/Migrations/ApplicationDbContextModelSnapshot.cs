@@ -33,9 +33,8 @@ namespace _3SDevTest.Migrations
                     b.Property<int>("BuildingNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FlatNumber")
                         .HasColumnType("int");
@@ -53,6 +52,8 @@ namespace _3SDevTest.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
@@ -62,7 +63,7 @@ namespace _3SDevTest.Migrations
                         {
                             Id = 1,
                             BuildingNumber = 1,
-                            City = "City1Gove1",
+                            CityId = 1,
                             FlatNumber = 1,
                             Governate = "Governate 1",
                             Street = "1",
@@ -72,7 +73,7 @@ namespace _3SDevTest.Migrations
                         {
                             Id = 2,
                             BuildingNumber = 2,
-                            City = "City2Gove1",
+                            CityId = 2,
                             FlatNumber = 2,
                             Governate = "Governate 1",
                             Street = "2",
@@ -82,7 +83,7 @@ namespace _3SDevTest.Migrations
                         {
                             Id = 3,
                             BuildingNumber = 3,
-                            City = "City1Gove2",
+                            CityId = 3,
                             FlatNumber = 3,
                             Governate = "Governate 2",
                             Street = "3",
@@ -234,11 +235,19 @@ namespace _3SDevTest.Migrations
 
             modelBuilder.Entity("_3SDevTest.Models.Address", b =>
                 {
+                    b.HasOne("_3SDevTest.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("_3SDevTest.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("City");
 
                     b.Navigation("User");
                 });

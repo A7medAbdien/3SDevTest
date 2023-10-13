@@ -26,6 +26,7 @@ namespace _3SDevTest.Pages.Addresses
             if (_context.Addresses != null)
             {
                 Address = await _context.Addresses
+                .Include(a => a.City)
                 .Include(a => a.User).ToListAsync();
             }
         }

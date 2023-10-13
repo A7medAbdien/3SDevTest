@@ -18,11 +18,12 @@
 
             <div class="form-group">
                 <label asp-for="Address.Governate" class="control-label"></label>
-                <select asp-for="Address.Governate" class="form-control" asp-items="ViewBag.GovernatesList"></select>
+                <input asp-for="Address.Governate" class="form-control" />
+                <span asp-validation-for="Address.Governate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address.City" class="control-label"></label>
-                <select asp-for="Address.City" class ="form-control" asp-items="ViewBag.CitiesList"></select>
+                <label asp-for="Address.CityId" class="control-label"></label>
+                <select asp-for="Address.CityId" class ="form-control" asp-items="ViewBag.CityId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Address.Street" class="control-label"></label>
