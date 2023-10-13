@@ -21,8 +21,13 @@ namespace _3SDevTest.Pages.Addresses
         public IActionResult OnGet(int userId)
         {
             ViewData["UserId"] = userId;
-            ViewData["Governates"] = new SelectList(_context.Governates, "Name", "Name");
-            ViewData["Cities"] = new SelectList(_context.Cities, "Id", "Name");
+            ViewData["Governates"] = new SelectList(_context.Governates, "Id", "Name");
+            ViewData["Cities"] = _context.Cities.Select(c => new
+            {
+                c.Id,
+                c.Name,
+                c.GovernateId
+            }).ToList();
             return Page();
         }
 
@@ -32,6 +37,7 @@ namespace _3SDevTest.Pages.Addresses
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public IActionResult OnPost()
         {
+
             if (!ModelState.IsValid || _context.Addresses == null || Address == null )
             {
                 return Page();

@@ -1,0 +1,39 @@
+﻿<script>
+
+    document.addEventListener("DOMContentLoaded",
+        async function () {
+            var governate = document.getElementById("governate");
+            var city = document.getElementById("city");
+            city.disabled = true;
+
+            governate.addEventListener('change',
+                async function () {
+
+                    var Cities = @Html.Raw(Json.Serialize(ViewBag.Cities));
+                    console.log(Cities)
+
+                    if (governate.value == "") {
+                        city.disabled = true;
+                        return;
+                    }
+
+                    for (var i = city.options.length - 1;
+                        i >= 0; i--) {
+                        city.removeChild(city.children[i]);
+                    }
+
+                    Cities.forEach(function (c) {
+                        console.log(c.governateId, governate.value)
+                        if (c.governateId == governate.value) {
+                            const option = document.createElement('option');
+                            option.value = c.id;
+                            option.innerHTML = c.name;
+                            city.appendChild(option);
+                        }
+                    });
+
+                    city.disabled = false;
+
+                });
+        });
+</script>
