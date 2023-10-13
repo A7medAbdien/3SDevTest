@@ -89,7 +89,7 @@ namespace _3SDevTest.Data
                     Id = 1,
                     UserId = 1,
                     Governate= "Governate 1",
-                    CityId = 1,
+                    City = "City1Gove1",
                     FlatNumber = 1,
                     BuildingNumber = 1,
                     Street = "1"
@@ -98,7 +98,7 @@ namespace _3SDevTest.Data
                     Id = 2,
                     UserId = 2,
                     Governate= "Governate 1",
-                    CityId = 2,
+                    City = "City2Gove1",
                     FlatNumber = 2,
                     BuildingNumber = 2,
                     Street = "2"
@@ -107,7 +107,7 @@ namespace _3SDevTest.Data
                     Id = 3,
                     UserId = 3,
                     Governate= "Governate 2",
-                    CityId = 3,
+                    City = "City1Gove2",
                     FlatNumber = 3,
                     BuildingNumber = 3,
                     Street = "3"

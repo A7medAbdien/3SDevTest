@@ -18,11 +18,7 @@ namespace _3SDevTest.Models
         public string Governate { get; set; }
 
         [Required]
-        [ValidateNever]
-        public int CityId { get; set; }
-        [ValidateNever]
-        [ForeignKey(nameof(CityId))]
-        public City City { get; set; }
+        public string City { get; set; }
 
         [Required]
         public string Street { get; set; }
