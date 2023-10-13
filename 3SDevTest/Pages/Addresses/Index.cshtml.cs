@@ -23,12 +23,31 @@ namespace _3SDevTest.Pages.Addresses
 
         public async Task OnGetAsync()
         {
+
             if (_context.Addresses != null)
             {
                 Address = await _context.Addresses
                 .Include(a => a.City)
                 .Include(a => a.User).ToListAsync();
             }
+        }
+
+        public Governate? GetGovernanceById(int id)
+        {
+            if (_context.Governates != null)
+            {
+                return _context.Governates.FirstOrDefault(u => u.Id == id);
+            }
+            return null;
+        }
+
+        public string GetFullNameByUser(User user)
+        {
+            //if(user.MiddleName != null)
+            //{
+            //    return user.FirstName + " " + user.MiddleName + " " + user.LastName;
+            //}
+            return user.FirstName + " " + user.LastName;
         }
     }
 }
